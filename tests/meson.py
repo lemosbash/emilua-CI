@@ -16,7 +16,7 @@ def builder():
 
 def meson_tester():
     if (os.path.exists(path[2]) == False):
-        (print("build did go well, tests cannot go further"))        
+        print("build did not go well, tests cannot go further")        
     else: 
         if(os.path.exists(path[2]) == True):
             test = os.WEXITSTATUS(os.system("cd emilua/build && meson test"))
