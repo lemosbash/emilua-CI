@@ -3,7 +3,7 @@ import os.path
 from subprocess import check_output 
 import requests 
 
-path = ["emilua/", "emilua/build", "emilua/build/emilua"]
+path = ("emilua/", "emilua/build", "emilua/build/emilua")
 
 def builder():
     if(os.path.exists(path[1]) == True):
