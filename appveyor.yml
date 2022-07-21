@@ -1,0 +1,38 @@
+build: true 
+
+image: Visual Studio 2022
+
+install:
+#basic prepare
+- mkdir C:\pkgconfig
+- mv etc/openssl.pc C:\pkgconfig
+- ps: $env:PKG_CONFIG_PATH = 'C:\pkgconfig'
+#enable visual studio toolset for luajit build
+- call "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvars64.bat"
+#install basic dependencies
+- choco install xxd re2c openssl 
+- choco install boost-msvc-14.3 gawk wget ninja pkgconfiglite make lua 
+- pip install meson
+#install fmt C++ library, needed for build
+- vcpkg install fmt
+
+#Luajit build and install through this script
+- git clone https://luajit.org/git/luajit.git
+- cp luajit/etc/luajit.pc C:\pkgconfig 
+- cd luajit/src
+- msvcbuild
+- cd ../../
+- ps: $env:PATH += "luajit/src"
+#finish the luajit manual build
+
+# 
+build_script:
+  - mkdir emilua
+  - git clone -b appveyor_build git@gitlab.com:Leminhos/emilua.git emilua/ 
+  - cd emilua 
+  - mkdir build && cd build
+  - ps: cp ../../luajit/src/luajit.exe .
+  - ps: cp ../../luajit/src/lua51.dll .
+  - ps: meson -D enable_manpages=false -D enable_tests=true -D disable_color=true ../
+  - ps: ninja
+  - ps: meson test

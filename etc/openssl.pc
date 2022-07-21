@@ -1,0 +1,4 @@
+Name: openssl
+Version: 1.1.1
+Libs: "-LC:/Program Files/OpenSSL-Win64/lib" -lopenssl
+Cflags: -I"C:/Program Files/OpenSSL-Win64/include"

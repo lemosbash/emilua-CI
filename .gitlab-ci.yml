@@ -1,0 +1,11 @@
+image: lemosx/emilua
+
+pages:
+  script:
+    - git clone https://gitlab.com/emilua/emilua
+    - cd emilua && mkdir build 
+    - cd build && meson -D enable_tests=true ..
+    - ninja
+    - meson test 
+  only:
+  - master

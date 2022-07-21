@@ -1,0 +1,7 @@
+= Builder Branch
+
+== Abstract
+
+Branch used for building and publishing of the binary automatically, triggered by any commit in the main repo
+
+Another appveyor branch is provided, testing the build on a windows environment
