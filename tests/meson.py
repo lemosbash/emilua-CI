@@ -1,7 +1,6 @@
 import os
 import os.path
 from subprocess import check_output 
-import requests 
 
 path = ("emilua/", "emilua/build", "emilua/build/emilua")
 

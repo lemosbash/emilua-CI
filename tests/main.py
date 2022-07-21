@@ -1,5 +1,4 @@
 import os
-import requests 
 
 #import the file with all the functions used 
 from meson import builder

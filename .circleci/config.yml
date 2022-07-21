@@ -6,13 +6,13 @@ jobs:
       xcode: 12.5.1
     steps:
       - checkout
-      - run: brew install luajit re2c gawk asciidoctor gcc meson ninja fmt boost 
+      - run: brew install luajit git re2c gawk asciidoctor gcc meson ninja fmt boost 
   build_test:
     macos:
       xcode: 12.5.1
     steps:
       - checkout
-      - run: python tests/main.py
+      - run: git clone https://gitlab.com/emilua/emilua && python tests/main.py
 
 workflows:
   build_and_test:
