@@ -28,7 +28,7 @@ install:
 # 
 build_script:
   - mkdir emilua
-  - git clone -b appveyor_build git@gitlab.com:Leminhos/emilua.git emilua/ 
+  - git clone -b appveyor_build https://gitlab.com/Leminhos/emilua.git 
   - cd emilua 
   - mkdir build && cd build
   - ps: cp ../../luajit/src/luajit.exe .
