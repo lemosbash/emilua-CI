@@ -1,12 +1,22 @@
 image: lemosx/emilua
 
-pages:
+test_gcc:
   script:
     - git clone https://gitlab.com/emilua/emilua
     - cd emilua && mkdir build 
-    - cd build && meson -D enable_tests=true -Db..
+    - cd build && CC=gcc meson -D enable_tests=true -Db_sanitize=address -Db_sanitize=pointer-compare  ..
     - ninja
     - meson test
     - mkdir public/
   only:
   - master
+
+
+image: lemosx/clang-emilua
+test_clang: 
+  script:
+    - cd ../ && rm -rf build 
+    - mkdir build && cd build
+    - CC=clang meson -D enable_test=true -Db_sanitize=address ../ 
+    - ninja
+    - meson test
