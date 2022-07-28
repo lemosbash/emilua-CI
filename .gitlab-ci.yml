@@ -9,7 +9,7 @@ gcc:
     - meson test
   only:
   - master
-gcc:
+clang:
   image: lemosx/clang-emilua
   script:
     - CC=clang meson --reconfigure -D enable_tests=true -Db_sanitize=address ../
